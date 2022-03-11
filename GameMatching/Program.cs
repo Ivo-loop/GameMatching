@@ -1,5 +1,6 @@
 ﻿using System;
 using GameMatching.Partidas.Menu;
+using GameMatching.Jogos.Menu;
 
 namespace GameMatching
 {
@@ -30,7 +31,8 @@ namespace GameMatching
                     case '2':
                         Console.Title = "Cadastro de Jogo";
                         Console.ReadLine();
-                        Console.WriteLine("//MenuJogo.Menu()");
+                        var menuJogo = new MenuJogo();
+                        menuJogo.Menu();
                         break;
                     case '3':
                         Console.Title = "Cadastro de Solicitação de Player";
