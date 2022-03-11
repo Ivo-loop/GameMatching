@@ -13,7 +13,7 @@ namespace GameMatching.Jogos.Services
 
         public ServiceJogo()
         {
-            _repositoryBase = new RepositoryBase("");
+            _repositoryBase = new RepositoryBase("Banco/Jogo.json");
         }
 
         public void Cadastrar(string nomeJogo, int quantidadeJogadores)
