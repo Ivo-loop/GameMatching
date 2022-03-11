@@ -40,13 +40,13 @@ namespace GameMatching.Jogos.Services
 
             if (!hasErrors)
             {
-                _repositoryBase.CadastrarProduto<Jogo>(new Jogo(nomeJogo, quantidadeJogadores));
+                _repositoryBase.Cadastrar<Jogo>(new Jogo(nomeJogo, quantidadeJogadores));
             }
         }
 
         public List<Jogo> BuscarTodos()
         {
-            return _repositoryBase.BuscarTodosOsProdutos<Jogo>();
+            return _repositoryBase.BuscarTodos<Jogo>();
         }
 
         private bool VerificaSeJogoJaCadastrado(string nome)

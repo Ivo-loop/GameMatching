@@ -13,7 +13,7 @@ namespace GameMatching.Comum.Repositories
             pathFile = Directory.GetCurrentDirectory() + @"..\..\..\..\"+ path;
         }
 
-        public bool CadastrarProduto<T>(T objetos)
+        public bool Cadastrar<T>(T objetos)
         {
             using FileStream stream = File.OpenRead(pathFile);
             var produtosDB = JsonSerializer.DeserializeAsync<List<T>>(stream).Result;
@@ -24,7 +24,7 @@ namespace GameMatching.Comum.Repositories
             return true;
         }
 
-        public List<T> BuscarTodosOsProdutos<T>()
+        public List<T> BuscarTodos<T>()
         {
             using FileStream stream = File.OpenRead(pathFile);
             return JsonSerializer.DeserializeAsync<List<T>>(stream).Result;
