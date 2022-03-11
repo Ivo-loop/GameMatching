@@ -1,6 +1,6 @@
 ﻿using GameMatching.Comum.Entidades;
 
-namespace GameMatching.Entidades
+namespace GameMatching.Jogos.Entidades
 {
     public class Jogos : EntidadeBase
     {
