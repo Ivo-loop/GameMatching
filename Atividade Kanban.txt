@@ -1,0 +1,46 @@
+Requisitos:
+- Documentação
+- Tracking tempo
+- Pontuação Tasks
+- Detalhamento de tasks
+- Gestão de tasks
+
+Software a ser desenvolvido:
+- Um sistema de cadastro de jogos para players, com:
+	Arquitetura Ivo
+		EntidadeBase Ivo
+			Id
+	Menu 2
+	Repository 1 Ivo
+- Cadastro do player
+	Entidade 1
+		Nome 
+	Service 2 
+		Cadastro 
+		Exclusão
+	Menu 1 Julia
+- Cadastro dos jogos disponiveis na plataforma
+	Entidade 1 Natanael
+		Nome
+		Jogadores por partida
+	Service 2
+		Cadastro 
+		Exclusão
+	Menu 1
+- Cadastro de solicitação de partida
+	Entidade 1 Ivo
+		Lista players 
+		Jogo		
+	Service 3
+		Cadastro 
+		Exclusão
+	Menu 1
+- Cadastro de solicitação de player
+	Entidade 1
+		Jogo
+		Id jogador
+		Quantidade de jogadores necessários
+	Service 3
+		Cadastro 
+		Exclusão
+	Menu 1
