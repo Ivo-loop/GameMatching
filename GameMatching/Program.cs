@@ -1,8 +1,9 @@
 ﻿using System;
+using GameMatching.Partidas.Menu;
 
 namespace GameMatching
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -39,7 +40,8 @@ namespace GameMatching
                     case '4':
                         Console.Title = "Cadastro de Solicitação de Partida";
                         Console.ReadLine();
-                        //MenuSolicitacaoPartida.Menu();
+                        var menuPartida = new MenuPartida();
+                        menuPartida.Menu();
                         break;
                     case '0':
                         Environment.Exit(0);

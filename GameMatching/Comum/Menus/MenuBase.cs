@@ -4,6 +4,6 @@ namespace GameMatching.Comum.Menus
 {
     public abstract class MenuBase
     {
-        public static abstract void Menu();
+        public abstract void Menu();
     }
 }
