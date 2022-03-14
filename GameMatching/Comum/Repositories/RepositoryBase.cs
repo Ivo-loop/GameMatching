@@ -10,17 +10,17 @@ namespace GameMatching.Comum.Repositories
 
         public RepositoryBase(string path)
         {
-            pathFile = Directory.GetCurrentDirectory() + @"..\..\..\..\"+ path;
+            pathFile = Directory.GetCurrentDirectory() + path;
         }
 
         public bool Cadastrar<T>(T objetos)
         {
             using FileStream stream = File.OpenRead(pathFile);
-            var produtosDB = JsonSerializer.DeserializeAsync<List<T>>(stream).Result;
+            var database = JsonSerializer.DeserializeAsync<List<T>>(stream).Result;
             stream.Close();
 
-            produtosDB.Add(objetos);
-            File.WriteAllText(pathFile, JsonSerializer.Serialize(produtosDB));
+            database.Add(objetos);
+            File.WriteAllText(pathFile, JsonSerializer.Serialize(database));
             return true;
         }
 

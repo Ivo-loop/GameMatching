@@ -13,7 +13,7 @@ namespace GameMatching.Jogos.Services
 
         public ServiceJogo()
         {
-            _repositoryBase = new RepositoryBase("Banco/Jogo.json");
+            _repositoryBase = new RepositoryBase("/Banco/Jogo.json");
         }
 
         public void Cadastrar(string nomeJogo, int quantidadeJogadores)
@@ -40,7 +40,9 @@ namespace GameMatching.Jogos.Services
 
             if (!hasErrors)
             {
-                _repositoryBase.Cadastrar<Jogo>(new Jogo(nomeJogo, quantidadeJogadores));
+                var idJogo = Guid.NewGuid();
+                _repositoryBase.Cadastrar<Jogo>(new Jogo(idJogo, nomeJogo, quantidadeJogadores));
+                Console.WriteLine($"Jogo cadastrado com sucesso, Id: {idJogo}");
             }
         }
 
@@ -54,9 +56,7 @@ namespace GameMatching.Jogos.Services
             var jogos = BuscarTodos();
 
             if (jogos.Any(x => x.Nome == nome))
-            {
                 return true;
-            }
 
             return false;
         }

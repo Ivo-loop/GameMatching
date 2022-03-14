@@ -1,4 +1,5 @@
 ﻿using GameMatching.Comum.Entidades;
+using System;
 
 namespace GameMatching.Jogos.Entidades
 {
@@ -7,8 +8,9 @@ namespace GameMatching.Jogos.Entidades
         public string Nome { get; private set; }
         public int QuantidadeJogadores { get; private set; }
 
-        public Jogo(string nome, int quantidadeJogadores)
+        public Jogo(Guid id, string nome, int quantidadeJogadores)
         {
+            Id = id;
             Nome = nome;
             QuantidadeJogadores = quantidadeJogadores;
         }

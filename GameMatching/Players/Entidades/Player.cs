@@ -1,14 +1,16 @@
 using GameMatching.Comum.Entidades;
+using System;
 
-namespace GameMatching.Player.Entidades
+namespace GameMatching.Players.Entidades
 {
     public class Player : EntidadeBase
     {
         public string Nome { get; set; }
 
-        public Player(string nomePlayer)
+        public Player(Guid id, string nome)
         {
-            Nome = nomePlayer;            
+            Id = id;
+            Nome = nome;
         }
     }
 }

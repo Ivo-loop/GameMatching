@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameMatching.Comum.Repositories;
-using GameMatching.Player.Interfaces;
+using GameMatching.Players.Interfaces;
+using GameMatching.Players.Entidades;
 
-namespace GameMatching.Player.Service
+namespace GameMatching.Players.Service
 {
     public class PlayerService : IPlayerService
     {
@@ -12,7 +13,7 @@ namespace GameMatching.Player.Service
 
         public PlayerService()
         {
-             _repositoryBase = new RepositoryBase("Player.json");
+             _repositoryBase = new RepositoryBase("/Banco/Player.json");
         }
 
         public void CadastrarPlayer(string nomePlayer)
@@ -33,13 +34,15 @@ namespace GameMatching.Player.Service
 
             if (!hasErrors)
             {
-                _repositoryBase.Cadastrar<Entidades.Player>(new Entidades.Player(nomePlayer));
+                var idPlayer = Guid.NewGuid();
+                _repositoryBase.Cadastrar<Player>(new Player(idPlayer, nomePlayer));
+                Console.WriteLine($"Player cadastrado com sucesso, Id: {idPlayer}");
             }
         }
 
-        public List<GameMatching.Player.Entidades.Player> BuscarTodos()
+        public List<Player> BuscarTodos()
         {
-            return _repositoryBase.BuscarTodos<GameMatching.Player.Entidades.Player>();
+            return _repositoryBase.BuscarTodos<Player>();
         }
 
         private bool VerificaSePlayerExiste(string nome)
@@ -47,9 +50,7 @@ namespace GameMatching.Player.Service
             var players = BuscarTodos();
 
             if (players.Any(x => x.Nome == nome))
-            {
                 return true;
-            }
 
             return false;
         }
