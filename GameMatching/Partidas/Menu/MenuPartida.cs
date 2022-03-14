@@ -19,7 +19,6 @@ namespace GameMatching.Partidas.Menu
                     Console.ReadLine();
                     break;
                 case "0":
-                    Console.WriteLine("Voltando para o menu...");
                     break;
                 default:
                     Console.WriteLine("Opção Inválida, tente novamente...");

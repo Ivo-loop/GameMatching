@@ -18,7 +18,6 @@ namespace GameMatching.Jogos.Menu
             switch (Console.ReadLine())
             {
                 case "1":
-                    Console.ReadLine();
                     Console.WriteLine("Insira o nome do jogo: ");
                     var nomeJogo = Console.ReadLine();
                     Console.WriteLine("Insira a quantidade máxima de jogadores: ");
@@ -26,7 +25,7 @@ namespace GameMatching.Jogos.Menu
                     service.Cadastrar(nomeJogo, qtdJogadores);
                     break;
                 case "0":
-                    return;
+                    break;
                 default:
                     Console.WriteLine("Opção inválida, tente novamente...");
                     Console.ReadLine();
