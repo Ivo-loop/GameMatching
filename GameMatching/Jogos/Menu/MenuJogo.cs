@@ -15,9 +15,9 @@ namespace GameMatching.Jogos.Menu
             Console.WriteLine("1. Cadastrar Jogo");
             Console.WriteLine("0. Sair");
             Console.Write("Opção: ");
-            switch (Console.Read())
+            switch (Console.ReadLine())
             {
-                case '1':
+                case "1":
                     Console.ReadLine();
                     Console.WriteLine("Insira o nome do jogo: ");
                     var nomeJogo = Console.ReadLine();
@@ -25,11 +25,12 @@ namespace GameMatching.Jogos.Menu
                     var qtdJogadores = Convert.ToInt32(Console.ReadLine());
                     service.Cadastrar(nomeJogo, qtdJogadores);
                     break;
-                case '0':
+                case "0":
                     return;
                 default:
                     Console.WriteLine("Opção inválida, tente novamente...");
                     Console.ReadLine();
+                    Menu();
                     break;
             }
         }
