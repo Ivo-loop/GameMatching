@@ -13,6 +13,7 @@ namespace GameMatching
 
         public static void StartMenu()
         {
+            Console.ReadLine();
             Console.Title = "GameMatching";
             Console.WriteLine("Escolha um dos menus a seguir: ");
             Console.WriteLine("1. Menu Cadastro Player");
