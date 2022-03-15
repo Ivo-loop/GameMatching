@@ -20,22 +20,22 @@ namespace GameMatching.Partidas.Services
             _serviceJogo = new ServiceJogo();
         }
 
-        public void Cadastrar(Guid idJogo)
+        public void Cadastrar(string nomeJogo)
         {
-            if (!ExisteJogoCadastrado(idJogo))
+            if (!ExisteJogoCadastrado(nomeJogo, out var jogo))
             {
-                Console.WriteLine($"Não existe jogo cadastrado para esse id: {idJogo}!");
+                Console.WriteLine($"Não existe jogo cadastrado para o jogo: {nomeJogo}!");
                 return;
             }
 
-            if (JaExisteSolicitacaoPartida(idJogo, out var nomeJogo))
+            if (JaExisteSolicitacaoPartida(jogo.Id))
             {
                 Console.WriteLine($"Solicitação já cadastrada para o jogo: {nomeJogo}!");
                 return;
             }
 
-            var partida = new Partida(idJogo);
-            _repositoryBase.Cadastrar<Partida>(new Partida(idJogo));
+            var partida = new Partida(jogo.Id);
+            _repositoryBase.Cadastrar<Partida>(new Partida(jogo.Id));
             Console.WriteLine($"Partida cadastrada com sucesso, Id: {partida.Id}");
         }
 
@@ -44,25 +44,26 @@ namespace GameMatching.Partidas.Services
             return _repositoryBase.BuscarTodos<Partida>();
         }
 
-        private bool JaExisteSolicitacaoPartida(Guid idJogo, out string nomeJogo)
+        private bool JaExisteSolicitacaoPartida(Guid idJogo)
         {
-            nomeJogo = "";
-            
             var allResults = BuscarTodos();
 
             var result = allResults.Find(x => x.Jogo == idJogo);
 
-            if (result != null) {
-                nomeJogo = BuscarNomeJogo(idJogo);
-
+            if (result != null) 
                 return true;
-            }
 
             return false;
         }
 
-        private string BuscarNomeJogo(Guid idJogo) => _serviceJogo.BuscarTodos().Find(x => x.Id == idJogo).Nome;
+        private bool ExisteJogoCadastrado(string nomeJogo, out Jogo jogo) 
+        { 
+            jogo = _serviceJogo.BuscarTodos().Find(x => x.Nome == nomeJogo);
 
-        private bool ExisteJogoCadastrado(Guid idJogo) => _serviceJogo.BuscarTodos().Any(x => x.Id == idJogo);
+            if (jogo != null)
+                return true;
+
+            return false;
+        }
     }
 }

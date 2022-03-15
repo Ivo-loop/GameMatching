@@ -6,7 +6,7 @@ namespace GameMatching.Partidas.Interfaces
 {
     public interface IServicePartida
     {
-        void Cadastrar(Guid idJogo);
+        void Cadastrar(string nomeJogo);
 
         List<Partida> BuscarTodos();
     }
