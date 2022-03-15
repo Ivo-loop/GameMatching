@@ -1,29 +1,27 @@
 using System;
 using GameMatching.Comum.Menus;
-using GameMatching.Jogos.Services;
+using GameMatching.Players.Service;
 
-namespace GameMatching.Jogos.Menu
+namespace GameMatching.Players.Menu
 {
-    public class MenuJogo : MenuBase
+    public class MenuPlayer : MenuBase
     {
         public override void Menu() 
         {
-            var service = new ServiceJogo();
-
+            var service = new ServicePlayer();
+            
             Console.WriteLine("");
-            Console.WriteLine("MENU DE JOGO");
+            Console.WriteLine("MENU DE PLAYER");
             Console.WriteLine("Escolha uma das opções...");
-            Console.WriteLine("1. Cadastrar Jogo");
+            Console.WriteLine("1. Cadastrar Player");
             Console.WriteLine("0. Sair");
             Console.Write("Opção: ");
             switch (Console.ReadLine())
             {
                 case "1":
-                    Console.WriteLine("Insira o nome do jogo: ");
-                    var nomeJogo = Console.ReadLine();
-                    Console.WriteLine("Insira a quantidade máxima de jogadores: ");
-                    var qtdJogadores = Convert.ToInt32(Console.ReadLine());
-                    service.Cadastrar(nomeJogo, qtdJogadores);
+                    Console.WriteLine("Insira o nome do player: ");
+                    var nomePlayer = Console.ReadLine();
+                    service.CadastrarPlayer(nomePlayer);
                     Console.ReadLine();
                     Menu();
                     break;

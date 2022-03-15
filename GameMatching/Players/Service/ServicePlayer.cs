@@ -7,11 +7,11 @@ using GameMatching.Players.Entidades;
 
 namespace GameMatching.Players.Service
 {
-    public class PlayerService : IPlayerService
+    public class ServicePlayer : IServicePlayer
     {
         public RepositoryBase _repositoryBase { get; set; }
 
-        public PlayerService()
+        public ServicePlayer()
         {
              _repositoryBase = new RepositoryBase("/Banco/Player.json");
         }

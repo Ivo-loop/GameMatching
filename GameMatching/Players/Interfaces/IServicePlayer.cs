@@ -3,7 +3,7 @@ using GameMatching.Players.Entidades;
 
 namespace GameMatching.Players.Interfaces
 {
-    public interface IPlayerService
+    public interface IServicePlayer
     {
         void CadastrarPlayer(string nomePlayer);
         List<Player> BuscarTodos();
