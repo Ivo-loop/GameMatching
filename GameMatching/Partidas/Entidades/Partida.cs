@@ -8,5 +8,12 @@ namespace GameMatching.Partidas.Entidades
     {
         public List<Guid> Players { get; set; }
         public Guid Jogo { get; set; }
+
+        public Partida(Guid jogo)
+        {
+            Id = Guid.NewGuid();
+            Players = new List<Guid>();
+            Jogo = jogo;
+        }
     }
 }
