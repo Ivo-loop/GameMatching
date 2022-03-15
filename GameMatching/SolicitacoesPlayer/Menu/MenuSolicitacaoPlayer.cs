@@ -1,8 +1,8 @@
 ﻿using GameMatching.Comum.Menus;
-using GameMatching.SolicitacaoPlayer.Services;
+using GameMatching.SolicitacoesPlayer.Services;
 using System;
 
-namespace GameMatching.SolicitacaoPlayer.Menu
+namespace GameMatching.SolicitacoesPlayer.Menu
 {
     public class MenuSolicitacaoPlayer : MenuBase
     {

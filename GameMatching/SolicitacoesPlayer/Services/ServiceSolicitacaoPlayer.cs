@@ -1,9 +1,6 @@
 ﻿using GameMatching.Comum.Repositories;
-using GameMatching.Partidas.Services;
-using GameMatching.Partidas.Entidades;
-using GameMatching.Partidas.Interfaces;
-using GameMatching.SolicitacaoPlayer.Entidades;
-using GameMatching.SolicitacaoPlayer.Interfaces;
+using GameMatching.SolicitacoesPlayer.Entidades;
+using GameMatching.SolicitacoesPlayer.Interfaces;
 using GameMatching.Jogos.Entidades;
 using GameMatching.Jogos.Services;
 using GameMatching.Players.Service;
@@ -13,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GameMatching.Gatilhos.Services;
 
-namespace GameMatching.SolicitacaoPlayer.Services
+namespace GameMatching.SolicitacoesPlayer.Services
 {
     public class ServiceSolicitacaoPlayer : IServiceSolicitacaoPlayer
     {
@@ -44,26 +41,26 @@ namespace GameMatching.SolicitacaoPlayer.Services
                 return;
             }
 
-            var solicitacaoPlayer = new GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer(jogo.Id, player.Id);
+            var solicitacaoPlayer = new SolicitacaoPlayer(jogo.Id, player.Id);
 
             if (!AtribuiPartida(solicitacaoPlayer, jogo)) {
-                _repositoryBase.Cadastrar<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer>(solicitacaoPlayer);
+                _repositoryBase.Cadastrar<SolicitacaoPlayer>(solicitacaoPlayer);
                 Console.WriteLine($"Solicitação de jogador cadastrada com sucesso, Id: {solicitacaoPlayer.Id}");
             } else {
                 Console.WriteLine("Partida foi montada com sucesso, retirando a solicitação de players e de partida!");
             }
         }
 
-        public List<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer> BuscarTodos()
+        public List<SolicitacaoPlayer> BuscarTodos()
         {
-            return _repositoryBase.BuscarTodos<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer>();
+            return _repositoryBase.BuscarTodos<SolicitacaoPlayer>();
         }
 
         public void ExcluirSolicitacoes(List<Guid> ids) 
         {
-            var solicitacoes = _repositoryBase.BuscarTodos<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer>().Where(x => ids.Contains(x.Id)).ToList();
+            var solicitacoes = _repositoryBase.BuscarTodos<SolicitacaoPlayer>().Where(x => ids.Contains(x.Id)).ToList();
 
-            solicitacoes.ForEach(x => _repositoryBase.Excluir<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer>(x));
+            solicitacoes.ForEach(x => _repositoryBase.Excluir<SolicitacaoPlayer>(x));
         }
 
         private bool ExisteJogoCadastrado(string nomeJogo, out Jogo jogo) 
@@ -86,7 +83,7 @@ namespace GameMatching.SolicitacaoPlayer.Services
             return false;
         }
 
-        private bool AtribuiPartida(GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer solicitacaoPlayer, Jogo jogo) 
+        private bool AtribuiPartida(SolicitacaoPlayer solicitacaoPlayer, Jogo jogo) 
         {
             var partida = _gatilhoService.BuscarTodosServicePartida().Find(x => x.Jogo == jogo.Id);
 

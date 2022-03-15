@@ -2,7 +2,7 @@
 using GameMatching.Partidas.Menu;
 using GameMatching.Jogos.Menu;
 using GameMatching.Players.Menu;
-using GameMatching.SolicitacaoPlayer.Menu;
+using GameMatching.SolicitacoesPlayer.Menu;
 
 namespace GameMatching
 {

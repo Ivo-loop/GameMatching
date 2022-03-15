@@ -3,8 +3,6 @@ using GameMatching.Partidas.Entidades;
 using GameMatching.Partidas.Interfaces;
 using GameMatching.Jogos.Entidades;
 using GameMatching.Jogos.Services;
-using GameMatching.SolicitacaoPlayer.Entidades;
-using GameMatching.SolicitacaoPlayer.Services;
 using GameMatching.Gatilhos.Services;
 using System;
 using System.Collections.Generic;

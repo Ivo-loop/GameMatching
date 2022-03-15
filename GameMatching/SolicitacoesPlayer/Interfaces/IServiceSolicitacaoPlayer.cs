@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameMatching.Partidas.Entidades;
+using GameMatching.SolicitacoesPlayer.Entidades;
 
-namespace GameMatching.SolicitacaoPlayer.Interfaces
+namespace GameMatching.SolicitacoesPlayer.Interfaces
 {
     public interface IServiceSolicitacaoPlayer
     {
         void Cadastrar(string nomeJogo, string nomePlayer);
 
-        List<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer> BuscarTodos();
+        List<SolicitacaoPlayer> BuscarTodos();
 
         void ExcluirSolicitacoes(List<Guid> ids);
     }

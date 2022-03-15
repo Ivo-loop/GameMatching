@@ -1,7 +1,7 @@
 ﻿using GameMatching.Comum.Entidades;
 using System;
 
-namespace GameMatching.SolicitacaoPlayer.Entidades
+namespace GameMatching.SolicitacoesPlayer.Entidades
 {
     public class SolicitacaoPlayer : EntidadeBase
     {

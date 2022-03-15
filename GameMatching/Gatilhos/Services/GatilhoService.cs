@@ -1,14 +1,6 @@
 using GameMatching.Comum.Repositories;
-using GameMatching.Partidas.Services;
 using GameMatching.Partidas.Entidades;
-using GameMatching.Partidas.Interfaces;
-using GameMatching.SolicitacaoPlayer.Services;
-using GameMatching.SolicitacaoPlayer.Entidades;
-using GameMatching.SolicitacaoPlayer.Interfaces;
-using GameMatching.Jogos.Entidades;
-using GameMatching.Jogos.Services;
-using GameMatching.Players.Service;
-using GameMatching.Players.Entidades;
+using GameMatching.SolicitacoesPlayer.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,18 +20,19 @@ namespace GameMatching.Gatilhos.Services
 
         public void ExcluirSolicitacoes(List<Guid> ids) 
         {
-            var solicitacoes = _repositoryBaseSolicitacaoPlayer.BuscarTodos<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer>().Where(x => ids.Contains(x.Id)).ToList();
+            var solicitacoes = _repositoryBaseSolicitacaoPlayer.BuscarTodos<SolicitacaoPlayer>().Where(x => ids.Contains(x.Id)).ToList();
 
-            solicitacoes.ForEach(x => _repositoryBaseSolicitacaoPlayer.Excluir<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer>(x));
+            solicitacoes.ForEach(x => _repositoryBaseSolicitacaoPlayer.Excluir<SolicitacaoPlayer>(x));
         }
 
         public void ExcluirSolicitacaoPartida(Partida partida) 
         {
+            Console.WriteLine(partida.Id + "," + partida.Players.Count + "," + partida.Jogo);
             _repositoryBasePartida.Excluir<Partida>(partida);
         }
 
-        public List<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer> BuscarTodosServiceSolicitacaoPlayer() =>
-          _repositoryBaseSolicitacaoPlayer.BuscarTodos<GameMatching.SolicitacaoPlayer.Entidades.SolicitacaoPlayer>();
+        public List<SolicitacaoPlayer> BuscarTodosServiceSolicitacaoPlayer() =>
+          _repositoryBaseSolicitacaoPlayer.BuscarTodos<SolicitacaoPlayer>();
 
         public List<Partida> BuscarTodosServicePartida() =>
           _repositoryBasePartida.BuscarTodos<Partida>();
@@ -47,7 +40,7 @@ namespace GameMatching.Gatilhos.Services
         public void AtualizarPartida(Partida partida) 
         {
           var partidaBanco = _repositoryBasePartida.BuscarTodos<Partida>().Find(x => partida.Id == x.Id);
-
+          
           ExcluirSolicitacaoPartida(partidaBanco);
 
           _repositoryBasePartida.Cadastrar<Partida>(partida);          
