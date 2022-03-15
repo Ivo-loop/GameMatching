@@ -2,6 +2,7 @@
 using GameMatching.Partidas.Menu;
 using GameMatching.Jogos.Menu;
 using GameMatching.Players.Menu;
+using GameMatching.SolicitacaoPlayer.Menu;
 
 namespace GameMatching
 {
@@ -14,6 +15,7 @@ namespace GameMatching
 
         public static void StartMenu()
         {
+            Console.ReadLine();
             Console.Title = "GameMatching";
             Console.WriteLine("GAMEMATCHING");
             Console.WriteLine("Escolha um dos menus a seguir: ");
@@ -37,7 +39,8 @@ namespace GameMatching
                     break;
                 case "3":
                     Console.Title = "Menu de Solicitação de Player";
-                    //MenuSolicitacaoPlayer.Menu();
+                    var menuSolicitacaoPlayer = new MenuSolicitacaoPlayer();
+                    menuSolicitacaoPlayer.Menu();
                     break;
                 case "4":
                     Console.Title = "Menu de Solicitação de Partida";

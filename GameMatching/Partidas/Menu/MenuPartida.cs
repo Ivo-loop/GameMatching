@@ -21,8 +21,8 @@ namespace GameMatching.Partidas.Menu
                 case "1":
                     Console.Title = "Cadastro de partida";
                     Console.WriteLine("Insira o nome do jogo: ");
-                    var guidJogo = Console.ReadLine();
-                    service.Cadastrar(guidJogo);
+                    var nomeJogo = Console.ReadLine();
+                    service.Cadastrar(nomeJogo);
                     break;
                 case "0":
                     break;

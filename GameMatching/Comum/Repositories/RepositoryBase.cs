@@ -13,13 +13,13 @@ namespace GameMatching.Comum.Repositories
             pathFile = Directory.GetCurrentDirectory() + path;
         }
 
-        public bool Cadastrar<T>(T objetos)
+        public bool Cadastrar<T>(T objeto)
         {
             using FileStream stream = File.OpenRead(pathFile);
             var database = JsonSerializer.DeserializeAsync<List<T>>(stream).Result;
             stream.Close();
 
-            database.Add(objetos);
+            database.Add(objeto);
             File.WriteAllText(pathFile, JsonSerializer.Serialize(database));
             return true;
         }
@@ -28,6 +28,18 @@ namespace GameMatching.Comum.Repositories
         {
             using FileStream stream = File.OpenRead(pathFile);
             return JsonSerializer.DeserializeAsync<List<T>>(stream).Result;
+        }
+
+        public bool Excluir<T>(T objeto)
+        {
+            using FileStream stream = File.OpenRead(pathFile);
+            var database = JsonSerializer.DeserializeAsync<List<T>>(stream).Result;
+            stream.Close();
+
+            database.Remove(objeto);
+            File.WriteAllText(pathFile, JsonSerializer.Serialize(database));
+
+            return true;
         }
     }
 }
