@@ -7,40 +7,40 @@ Requisitos:
 
 Software a ser desenvolvido:
 - Um sistema de cadastro de jogos para players, com:
-	Arquitetura Ivo
-		EntidadeBase Ivo
+	Arquitetura 1 - Ivo - Done
+		EntidadeBase 1 - Ivo - Done
 			Id
-	Menu 2
-	Repository 1 Ivo
+	Menu 2 - Julia - Done 
+	Repository 1 - Ivo - Done
 - Cadastro do player
-	Entidade 1
+	Entidade 1 - felipe Regis - Done
 		Nome 
-	Service 2 
+	Service 2 - Paty - Done
 		Cadastro 
 		Exclusão
-	Menu 1 Julia
+	Menu 1 - Julia - Done 
 - Cadastro dos jogos disponiveis na plataforma
-	Entidade 1 Natanael
+	Entidade 1 - Natanael - Done
 		Nome
 		Jogadores por partida
-	Service 2
+	Service 2 - Natanael - Done
 		Cadastro 
 		Exclusão
-	Menu 1
+	Menu 1 - Julia - Done
 - Cadastro de solicitação de partida
-	Entidade 1 Ivo
+	Entidade 1 - Ivo - Done
 		Lista players 
 		Jogo		
-	Service 3
+	Service 3 - Felipe Regis - Done
 		Cadastro 
 		Exclusão
-	Menu 1
+	Menu 1 - Felipe Regis - Done
 - Cadastro de solicitação de player
-	Entidade 1
+	Entidade 1 - Ivo - Done
 		Jogo
 		Id jogador
 		Quantidade de jogadores necessários
-	Service 3
+	Service 3 - Amanda - Done
 		Cadastro 
 		Exclusão
-	Menu 1
+	Menu 1 - Felipe Regis - Done
