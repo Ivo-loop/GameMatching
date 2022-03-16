@@ -14,20 +14,22 @@ namespace GameMatching.Gatilhos.Services
 
         public GatilhoService()
         {
-            _repositoryBasePartida = new RepositoryBase("/Banco/SolitacoesParty.json");
-            _repositoryBaseSolicitacaoPlayer = new RepositoryBase("/Banco/SolitacoesPlayer.json");
+            _repositoryBasePartida = new RepositoryBase("/Banco/SolicitacoesParty.json");
+            _repositoryBaseSolicitacaoPlayer = new RepositoryBase("/Banco/SolicitacoesPlayer.json");
         }
 
         public void ExcluirSolicitacoes(List<Guid> ids) 
         {
-            var solicitacoes = _repositoryBaseSolicitacaoPlayer.BuscarTodos<SolicitacaoPlayer>().Where(x => ids.Contains(x.Id)).ToList();
-
-            solicitacoes.ForEach(x => _repositoryBaseSolicitacaoPlayer.Excluir<SolicitacaoPlayer>(x));
+            var solicitacoes = _repositoryBaseSolicitacaoPlayer.BuscarTodos<SolicitacaoPlayer>().Where(x => ids.Contains(x.IdPlayer)).ToList();
+            foreach (var solicitacao in solicitacoes)
+            {
+                var solicitacaoPlayerBanco = _repositoryBaseSolicitacaoPlayer.BuscarTodos<SolicitacaoPlayer>().FindIndex(x => x.Id == solicitacao.Id);
+                _repositoryBaseSolicitacaoPlayer.Excluir<SolicitacaoPlayer>(solicitacaoPlayerBanco);
+            }
         }
 
-        public void ExcluirSolicitacaoPartida(Partida partida) 
+        public void ExcluirSolicitacaoPartida(int partida)
         {
-            Console.WriteLine(partida.Id + "," + partida.Players.Count + "," + partida.Jogo);
             _repositoryBasePartida.Excluir<Partida>(partida);
         }
 
@@ -39,7 +41,7 @@ namespace GameMatching.Gatilhos.Services
 
         public void AtualizarPartida(Partida partida) 
         {
-          var partidaBanco = _repositoryBasePartida.BuscarTodos<Partida>().Find(x => partida.Id == x.Id);
+          var partidaBanco = _repositoryBasePartida.BuscarTodos<Partida>().FindIndex(x => x.Id == partida.Id);
           
           ExcluirSolicitacaoPartida(partidaBanco);
 

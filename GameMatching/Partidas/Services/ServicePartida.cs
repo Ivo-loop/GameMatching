@@ -18,7 +18,7 @@ namespace GameMatching.Partidas.Services
 
         public ServicePartida()
         {
-            _repositoryBase = new RepositoryBase("/Banco/SolitacoesParty.json");
+            _repositoryBase = new RepositoryBase("/Banco/SolicitacoesParty.json");
             _serviceJogo = new ServiceJogo();
             _gatilhoService = new GatilhoService();
         }
@@ -38,7 +38,7 @@ namespace GameMatching.Partidas.Services
             }
 
             var partida = new Partida(jogo.Id);
-
+            
             if (!AtribuiSolicitacaoPlayer(partida, jogo.QuantidadeJogadores)) {
                 _repositoryBase.Cadastrar<Partida>(partida);
                 Console.WriteLine($"Partida cadastrada com sucesso, Id: {partida.Id}");
@@ -77,8 +77,6 @@ namespace GameMatching.Partidas.Services
         private bool AtribuiSolicitacaoPlayer(Partida partida, int quantidadeMaxima) 
         {
             var solicitacoesPlayer = _gatilhoService.BuscarTodosServiceSolicitacaoPlayer().Where(x => x.IdJogo == partida.Jogo).ToList();
-
-            Console.WriteLine(solicitacoesPlayer.Count);
 
             var quantidadeMaximaAtingida = false;
 

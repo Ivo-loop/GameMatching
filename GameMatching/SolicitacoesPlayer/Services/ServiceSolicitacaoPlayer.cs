@@ -21,7 +21,7 @@ namespace GameMatching.SolicitacoesPlayer.Services
 
         public ServiceSolicitacaoPlayer()
         {
-            _repositoryBase = new RepositoryBase("/Banco/SolitacoesPlayer.json");
+            _repositoryBase = new RepositoryBase("/Banco/SolicitacoesPlayer.json");
             _serviceJogo = new ServiceJogo();
             _servicePlayer = new ServicePlayer();
             _gatilhoService = new GatilhoService();
@@ -60,7 +60,11 @@ namespace GameMatching.SolicitacoesPlayer.Services
         {
             var solicitacoes = _repositoryBase.BuscarTodos<SolicitacaoPlayer>().Where(x => ids.Contains(x.Id)).ToList();
 
-            solicitacoes.ForEach(x => _repositoryBase.Excluir<SolicitacaoPlayer>(x));
+            foreach (var solicitacao in solicitacoes)
+            {
+                var solicitacaoPlayerBanco = _repositoryBase.BuscarTodos<SolicitacaoPlayer>().FindIndex(x => x.Id == solicitacao.Id);
+                _repositoryBase.Excluir<SolicitacaoPlayer>(solicitacaoPlayerBanco);
+            }
         }
 
         private bool ExisteJogoCadastrado(string nomeJogo, out Jogo jogo) 
@@ -89,19 +93,51 @@ namespace GameMatching.SolicitacoesPlayer.Services
 
             if (partida != null) 
             {
-                Console.WriteLine("1");
                 solicitacaoPlayer.IdPartida = partida.Id;
 
                 partida.Players.Add(solicitacaoPlayer.IdPlayer);
-                _gatilhoService.AtualizarPartida(partida);
+                _gatilhoService.AtualizarPartida(partida); //todo
 
-                if (partida.Players.Count == jogo.QuantidadeJogadores)
+
+                var solicitacoesPlayer = _gatilhoService.BuscarTodosServiceSolicitacaoPlayer().Where(x => x.IdJogo == partida.Jogo).ToList();
+                
+                var quantidadeMaximaAtingida = false;
+
+                foreach (var solicitacao in solicitacoesPlayer) {
+                    if ((solicitacoesPlayer.Count + 1) == jogo.QuantidadeJogadores) {
+                        quantidadeMaximaAtingida = true;
+
+                        break;
+                    }
+
+                    partida.Players.Add(solicitacao.IdPlayer);
+                }
+
+                if (quantidadeMaximaAtingida) {
+                    _gatilhoService.ExcluirSolicitacoes(partida.Players);
+                }
+
+
+                if (partida.Players.Count >= jogo.QuantidadeJogadores)
                 {
-                    Console.WriteLine("2");
-                   ExcluirSolicitacoes(partida.Players);
-                   _gatilhoService.ExcluirSolicitacaoPartida(partida);
+                    ExcluirSolicitacoes(partida.Players);
 
-                   return true;
+                    var qtdPartidasBanco = _gatilhoService.BuscarTodosServicePartida().Count;
+
+                    var partidaBanco = BuscarTodos().FindIndex(x => partida.Id == x.Id);
+
+                    if (qtdPartidasBanco ==  1){
+                        partidaBanco = 0;
+                    }
+                    else{
+                        var auxiliar = partidaBanco;
+                        partidaBanco = auxiliar * -1;
+                        
+                    }
+                    
+                    _gatilhoService.ExcluirSolicitacaoPartida(partidaBanco);
+
+                    return true;
                 }
             }
 
