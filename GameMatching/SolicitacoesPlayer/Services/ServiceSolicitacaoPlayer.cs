@@ -96,7 +96,7 @@ namespace GameMatching.SolicitacoesPlayer.Services
                 solicitacaoPlayer.IdPartida = partida.Id;
 
                 partida.Players.Add(solicitacaoPlayer.IdPlayer);
-                _gatilhoService.AtualizarPartida(partida); //todo
+                _gatilhoService.AtualizarPartida(partida);
 
 
                 var solicitacoesPlayer = _gatilhoService.BuscarTodosServiceSolicitacaoPlayer().Where(x => x.IdJogo == partida.Jogo).ToList();
@@ -113,9 +113,8 @@ namespace GameMatching.SolicitacoesPlayer.Services
                     partida.Players.Add(solicitacao.IdPlayer);
                 }
 
-                if (quantidadeMaximaAtingida) {
+                if (quantidadeMaximaAtingida)
                     _gatilhoService.ExcluirSolicitacoes(partida.Players);
-                }
 
 
                 if (partida.Players.Count >= jogo.QuantidadeJogadores)

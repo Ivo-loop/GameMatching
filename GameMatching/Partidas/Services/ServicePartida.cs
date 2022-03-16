@@ -38,11 +38,14 @@ namespace GameMatching.Partidas.Services
             }
 
             var partida = new Partida(jogo.Id);
-            
-            if (!AtribuiSolicitacaoPlayer(partida, jogo.QuantidadeJogadores)) {
+
+            if (!AtribuiSolicitacaoPlayer(partida, jogo.QuantidadeJogadores))
+            {
                 _repositoryBase.Cadastrar<Partida>(partida);
                 Console.WriteLine($"Partida cadastrada com sucesso, Id: {partida.Id}");
-            } else {
+            }
+            else
+            {
                 Console.WriteLine("Partida foi montada com sucesso, retirando a solicitação de players e de partida!");
             }
         }
@@ -58,14 +61,14 @@ namespace GameMatching.Partidas.Services
 
             var result = allResults.Find(x => x.Jogo == idJogo);
 
-            if (result != null) 
+            if (result != null)
                 return true;
 
             return false;
         }
 
-        private bool ExisteJogoCadastrado(string nomeJogo, out Jogo jogo) 
-        { 
+        private bool ExisteJogoCadastrado(string nomeJogo, out Jogo jogo)
+        {
             jogo = _serviceJogo.BuscarTodos().Find(x => x.Nome == nomeJogo);
 
             if (jogo != null)
@@ -74,26 +77,25 @@ namespace GameMatching.Partidas.Services
             return false;
         }
 
-        private bool AtribuiSolicitacaoPlayer(Partida partida, int quantidadeMaxima) 
+        private bool AtribuiSolicitacaoPlayer(Partida partida, int quantidadeMaxima)
         {
             var solicitacoesPlayer = _gatilhoService.BuscarTodosServiceSolicitacaoPlayer().Where(x => x.IdJogo == partida.Jogo).ToList();
 
             var quantidadeMaximaAtingida = false;
 
-            foreach (var solicitacao in solicitacoesPlayer) {
-                if ((partida.Players.Count + 1) == quantidadeMaxima) {
+            foreach (var solicitacao in solicitacoesPlayer)
+            {
+                if ((partida.Players.Count + 1) == quantidadeMaxima)
                     quantidadeMaximaAtingida = true;
 
-                    break;
-                }
-
                 partida.Players.Add(solicitacao.IdPlayer);
-            }
 
-            if (quantidadeMaximaAtingida) {
-                _gatilhoService.ExcluirSolicitacoes(partida.Players);
+                if (quantidadeMaximaAtingida)
+                {
+                    _gatilhoService.ExcluirSolicitacoes(partida.Players);
 
-                return true;
+                    return true;
+                }
             }
 
             return false;

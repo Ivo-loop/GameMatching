@@ -20,8 +20,8 @@ namespace GameMatching.Gatilhos.Services
 
         public void ExcluirSolicitacoes(List<Guid> ids) 
         {
-            var solicitacoes = _repositoryBaseSolicitacaoPlayer.BuscarTodos<SolicitacaoPlayer>().Where(x => ids.Contains(x.IdPlayer)).ToList();
-            foreach (var solicitacao in solicitacoes)
+            var solicitacoes = _repositoryBaseSolicitacaoPlayer.BuscarTodos<SolicitacaoPlayer>();
+            foreach (var solicitacao in solicitacoes.Where(x => ids.Contains(x.IdPlayer)).ToList())
             {
                 var solicitacaoPlayerBanco = _repositoryBaseSolicitacaoPlayer.BuscarTodos<SolicitacaoPlayer>().FindIndex(x => x.Id == solicitacao.Id);
                 _repositoryBaseSolicitacaoPlayer.Excluir<SolicitacaoPlayer>(solicitacaoPlayerBanco);

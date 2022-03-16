@@ -13,7 +13,7 @@ Software a ser desenvolvido:
 	Menu 2 - Julia - Done 
 	Repository 1 - Ivo - Done
 - Cadastro do player
-	Entidade 1 - felipe Regis - Done
+	Entidade 1 - Filipe Regis - Done
 		Nome 
 	Service 2 - Paty - Done
 		Cadastro 
@@ -31,16 +31,16 @@ Software a ser desenvolvido:
 	Entidade 1 - Ivo - Done
 		Lista players 
 		Jogo		
-	Service 3 - Felipe Regis - Done
+	Service 3 - Filipe Regis - Done
 		Cadastro 
 		Exclusão
-	Menu 1 - Felipe Regis - Done
+	Menu 1 - Filipe Regis - Done
 - Cadastro de solicitação de player
 	Entidade 1 - Ivo - Done
 		Jogo
 		Id jogador
 		Quantidade de jogadores necessários
-	Service 3 - Amanda - Done
+	Service 3 - Julia - Done
 		Cadastro 
 		Exclusão
-	Menu 1 - Felipe Regis - Done
+	Menu 1 - Filipe Regis - Done
